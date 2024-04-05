@@ -3,9 +3,10 @@ import { fabric } from "fabric";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import { useQueryParams } from "./hooks/useQueryParams";
- 
 
 const DefaultRoute = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   const { scale = 1, width, height, elements = 10 } = useQueryParams();
   useEffect(() => {
     const canvas = new fabric.StaticCanvas("canvas");
