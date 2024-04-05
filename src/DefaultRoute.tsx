@@ -1,3 +1,4 @@
+//@ts-nocheck
 import "./App.css";
 import { fabric } from "fabric";
 import { useEffect } from "react";

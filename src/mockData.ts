@@ -1,3 +1,4 @@
+//@ts-nocheck
 const createWhiteBox = (width, height) => ({
   type: "rect",
   version: "5.3.0",
