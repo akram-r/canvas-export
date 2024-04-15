@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import DefaultRoute from "./DefaultRoute";
 import ZipRoute from "./ZipRoute";
+import ManualRoute from "./ManualRoute";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/zip",
     element: <ZipRoute />,
+  },
+  {
+    path: "/manual",
+    element: <ManualRoute />,
   },
 ]);
 
