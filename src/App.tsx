@@ -5,6 +5,7 @@ import "./App.css";
 import DefaultRoute from "./DefaultRoute";
 import ZipRoute from "./ZipRoute";
 import ManualRoute from "./ManualRoute";
+import TextRoute from "./TextRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/manual",
     element: <ManualRoute />,
+  },
+  {
+    path: "/text",
+    element: <TextRoute />,
   },
 ]);
 
