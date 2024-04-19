@@ -363,7 +363,6 @@ const imageURLArray = [
   "/images/5mb.png",
   "/images/10mb.png",
   "/images/20mb.png",
-  "/images/30mb.png",
 ]
 const imagePredefined = (imageSize, withImageCache) => {
   let imageURL = imageURLArray[imageSize];
