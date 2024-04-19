@@ -1,5 +1,5 @@
 //@ts-nocheck
-const createWhiteBox = (width, height) => ({
+export const createWhiteBox = (width, height) => ({
   type: "rect",
   version: "5.3.0",
   originX: "left",
@@ -122,6 +122,83 @@ const text = {
   lockScalingFlip: true,
 };
 
+const unsplashFilters = [
+  'park',
+  'playground',
+  'landscape',
+  'nature',
+  'mountain',
+  'forest',
+  'water',
+  'sea',
+  'ocean',
+  'beach',
+  'city',
+  'building',
+  'architecture',
+  'road',
+  'car',
+  'bus',
+]
+
+const getRandomFilter = () => {
+  return unsplashFilters[Math.floor(Math.random() * unsplashFilters.length)]
+}
+
+const imageTrueRandom = (time) => ({
+  type: "image",
+  version: "5.3.0",
+  originX: "left",
+  originY: "top",
+  left: 30.31,
+  top: 167.82,
+  width: 1080,
+  height: 1170,
+  fill: "rgb(0,0,0)",
+  stroke: null,
+  strokeWidth: 0,
+  strokeDashArray: null,
+  strokeLineCap: "butt",
+  strokeDashOffset: 0,
+  strokeLineJoin: "miter",
+  strokeUniform: false,
+  strokeMiterLimit: 4,
+  scaleX: 0.25,
+  scaleY: 0.25,
+  angle: 0,
+  flipX: false,
+  flipY: false,
+  opacity: 1,
+  shadow: null,
+  visible: true,
+  backgroundColor: "",
+  fillRule: "nonzero",
+  paintFirst: "fill",
+  globalCompositeOperation: "source-over",
+  skewX: 0,
+  skewY: 0,
+  cropX: 0,
+  cropY: 0,
+  data: {
+    id: "zzcruvv",
+  },
+  selectable: true,
+  hoverCursor: null,
+  moveCursor: null,
+  hasControls: true,
+  hasBorders: true,
+  lockRotation: false,
+  lockMovementY: false,
+  lockScalingX: false,
+  lockScalingY: false,
+  lockSkewingX: false,
+  lockSkewingY: false,
+  lockScalingFlip: false,
+  src: `https://source.unsplash.com/random/?${getRandomFilter()}${time ? `?time=${time}` : ''}`,
+  crossOrigin: "anonymous",
+  filters: [],
+});
+
 const image = (time) => ({
   type: "image",
   version: "5.3.0",
@@ -171,7 +248,7 @@ const image = (time) => ({
   lockSkewingX: false,
   lockSkewingY: false,
   lockScalingFlip: false,
-  src: `https://source.unsplash.com/random/?background&time=${time}`,
+  src: `https://source.unsplash.com/random/?background${time ? `?time=${time}` : ''}`,
   crossOrigin: "anonymous",
   filters: [],
 });
@@ -277,6 +354,76 @@ const path2 = {
   lockScalingFlip: false,
   path: [["M", 25, 0], ["L", 50, 43.3013], ["L", 0, 43.3013], ["Z"]],
 };
+const imageURLArray = [
+  "/images/100kb.png",
+  "/images/200kb.png",
+  "/images/500kb.png",
+  "/images/1mb.png",
+  "/images/3mb.png",
+  "/images/5mb.png",
+  "/images/10mb.png",
+  "/images/20mb.png",
+  "/images/30mb.png",
+]
+const imagePredefined = (imageSize, withImageCache) => {
+  let imageURL = imageURLArray[imageSize];
+  if (!imageURL) {
+    imageURL = imageURLArray[2];
+  }
+  return {
+    type: "image",
+    version: "5.3.0",
+    originX: "left",
+    originY: "top",
+    left: 30.31,
+    top: 167.82,
+    width: 1080,
+    height: 1170,
+    fill: "rgb(0,0,0)",
+    stroke: null,
+    strokeWidth: 0,
+    strokeDashArray: null,
+    strokeLineCap: "butt",
+    strokeDashOffset: 0,
+    strokeLineJoin: "miter",
+    strokeUniform: false,
+    strokeMiterLimit: 4,
+    scaleX: 0.25,
+    scaleY: 0.25,
+    angle: 0,
+    flipX: false,
+    flipY: false,
+    opacity: 1,
+    shadow: null,
+    visible: true,
+    backgroundColor: "",
+    fillRule: "nonzero",
+    paintFirst: "fill",
+    globalCompositeOperation: "source-over",
+    skewX: 0,
+    skewY: 0,
+    cropX: 0,
+    cropY: 0,
+    data: {
+      id: "zzcruvv",
+    },
+    selectable: true,
+    hoverCursor: null,
+    moveCursor: null,
+    hasControls: true,
+    hasBorders: true,
+    lockRotation: false,
+    lockMovementY: false,
+    lockScalingX: false,
+    lockScalingY: false,
+    lockSkewingX: false,
+    lockSkewingY: false,
+    lockScalingFlip: false,
+    src: `${imageURL}${withImageCache === 'false' ? `?timestamp${Math.random()}` : ''}`,
+    crossOrigin: "anonymous",
+    filters: [],
+  }
+}
 
 const rect = {
   type: "rect",
@@ -331,8 +478,16 @@ const rect = {
   lockSkewingY: false,
   lockScalingFlip: false,
 };
-
-const getRandomInt = (max) => Math.floor(Math.random() * max);
+const randomAlphaNumeric = length => {
+  let s = '';
+  Array.from({ length }).some(() => {
+    s += Math.random().toString(36).slice(2);
+    return s.length >= length;
+  });
+  return s.slice(0, length);
+};
+export const getRandomInt = (max) => Math.floor(Math.random() * max);
+const shapesArray = [path1, path2]
 export const createRandomObject = (elements = 10, width = 800, height = 800) => {
   const randomObjects = [
     rect,
@@ -361,3 +516,44 @@ export const createRandomObject = (elements = 10, width = 800, height = 800) => 
     ],
   };
 };
+
+export const createVariant = ({ shapesCount, textCount, imagesCount, imageSize, width, height, withImageCache }: any) => {
+  return {
+    version: "5.3.0",
+    objects: [
+      ...Array.from({ length: shapesCount }, (_, index) => {
+        const shape = shapesArray[Math.floor(Math.random() * shapesArray.length)];
+        shape.left = getRandomInt(width);
+        shape.top = getRandomInt(height);
+        return shape;
+      }),
+      ...Array.from({ length: textCount }, (_, index) => {
+        const text1 = {
+          ...text,
+          left: getRandomInt(width),
+          top: getRandomInt(height),
+          text: randomAlphaNumeric(Math.floor(Math.random() * 100)),
+        };
+        return text1;
+      }),
+      ...Array.from({ length: imagesCount }, (_, index) => {
+        if (imagesCount > 2 && index > 2) {
+          return {
+            ...imageTrueRandom(withImageCache),
+            left: getRandomInt(width),
+            top: getRandomInt(height),
+          };
+        } else {
+          const image = {
+            ...imagePredefined(imageSize, withImageCache),
+            left: getRandomInt(width),
+            top: getRandomInt(height),
+          };
+          return image;
+        }
+
+
+      })
+    ]
+  }
+}

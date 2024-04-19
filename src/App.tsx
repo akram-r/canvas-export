@@ -6,6 +6,7 @@ import DefaultRoute from "./DefaultRoute";
 import ZipRoute from "./ZipRoute";
 import ManualRoute from "./ManualRoute";
 import TextRoute from "./TextRoute";
+import ProjectRoute from "./ProjectRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/text",
     element: <TextRoute />,
+  },
+  {
+    path: "/project",
+    element: <ProjectRoute />,
   },
 ]);
 
